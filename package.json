@@ -1,0 +1,14 @@
+{
+  "name": "mid-ssd-web-sekolah-terintegrasi",
+  "version": "1.0.0",
+  "description": "Web Sekolah Terintegrasi berbasis Scalable System Design",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.3",
+    "cors": "^2.8.5"
+  }
+}

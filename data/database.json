@@ -1,0 +1,238 @@
+{
+  "roles": [
+    {
+      "id": 1,
+      "name": "admin",
+      "label": "Admin"
+    },
+    {
+      "id": 2,
+      "name": "kepala",
+      "label": "Kepala Sekolah"
+    },
+    {
+      "id": 3,
+      "name": "guru",
+      "label": "Guru"
+    },
+    {
+      "id": 4,
+      "name": "bk",
+      "label": "Guru BK"
+    },
+    {
+      "id": 5,
+      "name": "wali",
+      "label": "Wali Kelas"
+    },
+    {
+      "id": 6,
+      "name": "siswa",
+      "label": "Siswa"
+    },
+    {
+      "id": 7,
+      "name": "orangtua",
+      "label": "Orang Tua"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Administrator",
+      "email": "admin@sekolah.test",
+      "password": "password123",
+      "role": "admin",
+      "student_id": null,
+      "teacher_id": null
+    },
+    {
+      "id": 2,
+      "name": "Kepala Sekolah",
+      "email": "kepala@sekolah.test",
+      "password": "password123",
+      "role": "kepala",
+      "student_id": null,
+      "teacher_id": null
+    },
+    {
+      "id": 3,
+      "name": "Pak Ahmad",
+      "email": "guru@sekolah.test",
+      "password": "password123",
+      "role": "guru",
+      "student_id": null,
+      "teacher_id": 1
+    },
+    {
+      "id": 4,
+      "name": "Bu Rina BK",
+      "email": "bk@sekolah.test",
+      "password": "password123",
+      "role": "bk",
+      "student_id": null,
+      "teacher_id": 2
+    },
+    {
+      "id": 5,
+      "name": "Pak Wali",
+      "email": "wali@sekolah.test",
+      "password": "password123",
+      "role": "wali",
+      "student_id": null,
+      "teacher_id": 3
+    },
+    {
+      "id": 6,
+      "name": "Andi Siswa",
+      "email": "siswa@sekolah.test",
+      "password": "password123",
+      "role": "siswa",
+      "student_id": 1,
+      "teacher_id": null
+    },
+    {
+      "id": 7,
+      "name": "Orang Tua Andi",
+      "email": "ortu@sekolah.test",
+      "password": "password123",
+      "role": "orangtua",
+      "student_id": 1,
+      "teacher_id": null
+    }
+  ],
+  "teachers": [
+    {
+      "id": 1,
+      "nip": "G001",
+      "name": "Pak Ahmad",
+      "subject_id": 1
+    },
+    {
+      "id": 2,
+      "nip": "BK001",
+      "name": "Bu Rina",
+      "subject_id": null
+    },
+    {
+      "id": 3,
+      "nip": "WK001",
+      "name": "Pak Wali",
+      "subject_id": 2
+    }
+  ],
+  "classes": [
+    {
+      "id": 1,
+      "name": "X RPL 1",
+      "homeroom_teacher_id": 3
+    },
+    {
+      "id": 2,
+      "name": "XI TKJ 1",
+      "homeroom_teacher_id": 3
+    }
+  ],
+  "subjects": [
+    {
+      "id": 1,
+      "name": "Basis Data"
+    },
+    {
+      "id": 2,
+      "name": "Pemrograman Web"
+    },
+    {
+      "id": 3,
+      "name": "Matematika"
+    }
+  ],
+  "students": [
+    {
+      "id": 1,
+      "nis": "S001",
+      "name": "Andi Saputra",
+      "class_id": 1,
+      "status": "Aktif",
+      "parent_name": "Bapak Andi"
+    },
+    {
+      "id": 2,
+      "nis": "S002",
+      "name": "Siti Aminah",
+      "class_id": 1,
+      "status": "Aktif",
+      "parent_name": "Ibu Siti"
+    },
+    {
+      "id": 3,
+      "nis": "S003",
+      "name": "Budi Santoso",
+      "class_id": 2,
+      "status": "Aktif",
+      "parent_name": "Bapak Budi"
+    }
+  ],
+  "teaching_journals": [
+    {
+      "id": 1,
+      "teacher_id": 1,
+      "class_id": 1,
+      "subject_id": 1,
+      "date": "2026-06-21",
+      "material": "Pengenalan database terpusat",
+      "method": "Diskusi",
+      "notes": "Pembelajaran berjalan lancar"
+    }
+  ],
+  "bk_cases": [
+    {
+      "id": 1,
+      "student_id": 1,
+      "teacher_id": 2,
+      "date": "2026-06-21",
+      "case_type": "Konseling",
+      "description": "Konseling motivasi belajar",
+      "follow_up": "Pemantauan mingguan",
+      "status": "Dipantau"
+    }
+  ],
+  "activity_logs": [
+    {
+      "id": 1,
+      "user_id": 1,
+      "user_name": "Administrator",
+      "role": "admin",
+      "action": "LOGIN",
+      "detail": "Pengguna masuk ke sistem",
+      "timestamp": "2026-07-04T23:42:12.440Z"
+    },
+    {
+      "id": 2,
+      "user_id": 6,
+      "user_name": "Andi Siswa",
+      "role": "siswa",
+      "action": "LOGIN",
+      "detail": "Pengguna masuk ke sistem",
+      "timestamp": "2026-07-04T23:48:03.804Z"
+    },
+    {
+      "id": 3,
+      "user_id": 1,
+      "user_name": "Administrator",
+      "role": "admin",
+      "action": "LOGIN",
+      "detail": "Pengguna masuk ke sistem",
+      "timestamp": "2026-07-04T23:56:28.410Z"
+    },
+    {
+      "id": 4,
+      "user_id": 7,
+      "user_name": "Orang Tua Andi",
+      "role": "orangtua",
+      "action": "LOGIN",
+      "detail": "Pengguna masuk ke sistem",
+      "timestamp": "2026-07-04T23:58:09.157Z"
+    }
+  ]
+}

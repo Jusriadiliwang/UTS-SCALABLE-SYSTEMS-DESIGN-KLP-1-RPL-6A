@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Sekolah Terintegrasi</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <section id="loginPage" class="login-page">
+    <div class="login-card">
+      <div class="brand">
+        <div class="logo">SSD</div>
+        <div>
+          <h1>Web Sekolah Terintegrasi</h1>
+          <p>Jurnal Mengajar, BK, Kesiswaan, Manajemen Pengguna, Monitoring & Logging.</p>
+        </div>
+      </div>
+      <div class="info">Prototipe ini menunjukkan konsep Scalable System Design: modular architecture, centralized database, role-based access control, API integration, monitoring, logging, dan scaling strategy.</div>
+      <form id="loginForm">
+        <label>Email</label>
+        <input id="email" type="email" value="admin@sekolah.test" required>
+        <label>Password</label>
+        <input id="password" type="password" value="password123" required>
+        <button>Masuk Sistem</button>
+      </form>
+      <h3>Akun Demo</h3>
+      <div class="demo">
+        <button data-email="admin@sekolah.test">Admin</button>
+        <button data-email="kepala@sekolah.test">Kepala</button>
+        <button data-email="guru@sekolah.test">Guru</button>
+        <button data-email="bk@sekolah.test">Guru BK</button>
+        <button data-email="wali@sekolah.test">Wali</button>
+        <button data-email="siswa@sekolah.test">Siswa</button>
+        <button data-email="ortu@sekolah.test">Orang Tua</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="mainApp" class="layout hidden">
+    <aside>
+      <div class="side-brand">
+        <div class="logo small">SSD</div>
+        <div>
+          <h2>Web Sekolah</h2>
+          <span id="roleText"></span>
+        </div>
+      </div>
+      <nav id="menu"></nav>
+      <div class="side-card">
+        <b>Scalable Design</b>
+        <p>Modul dipisahkan secara logis dan semua data terintegrasi pada satu database utama.</p>
+      </div>
+    </aside>
+    <main>
+      <header>
+        <div>
+          <h1 id="title">Dashboard</h1>
+          <p id="subtitle"></p>
+        </div>
+        <div>
+          <span id="userText"></span>
+          <button id="logoutBtn" class="gray">Logout</button>
+        </div>
+      </header>
+      <div id="content"></div>
+    </main>
+  </section>
+  <script src="/js/app.js"></script>
+</body>
+</html>
