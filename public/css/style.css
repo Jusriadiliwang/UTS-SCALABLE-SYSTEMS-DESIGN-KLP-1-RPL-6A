@@ -559,3 +559,118 @@ body[data-modul="architecture"] {
   background-image: linear-gradient(rgba(0, 28, 65, 0.782), rgba(244, 247, 251, 0.95)), url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSsfDr8msDUXy-2yNqe3e0Z2P_iKEjRLfGlLfmDW069ZgXQD0nGIoVpzo&s=10');
 }
 
+main header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  /* Memberikan background putih transparan agar teks terbaca */
+  background: rgba(255, 255, 255, 0.85); 
+  backdrop-filter: blur(10px); /* Efek kaca (Glassmorphism) */
+  -webkit-backdrop-filter: blur(10px);
+  
+  padding: 20px 28px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  margin-bottom: 30px;
+}
+
+/* Memastikan kelompok teks judul rapi */
+main header > div:first-child h1 {
+  margin: 0;
+  color: var(--text);
+  font-size: 24px;
+}
+
+main header > div:first-child p {
+  margin: 4px 0 0 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* Memastikan nama user dan tombol logout sejajar secara horizontal */
+main header > div:last-child {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Styling tambahan untuk teks nama user */
+#userText {
+  font-weight: 600;
+  color: var(--text);
+  font-size: 14px;
+}
+
+/* Responsivitas untuk layar kecil (HP) */
+@media (max-width: 768px) {
+  main header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+}
+
+/* =========================================
+   TABEL MODERN & ELEGAN
+   ========================================= */
+.wrap {
+  overflow-x: auto;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02); /* Bayangan super halus */
+  background: var(--card);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  white-space: nowrap; /* Mencegah teks turun ke bawah dan merusak layout */
+}
+
+th, td {
+  padding: 16px 20px; /* Ruang bernapas yang lebih luas */
+  text-align: left;
+  font-size: 14px;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+}
+
+th {
+  background: #f8fafc; /* Latar belakang abu-abu sangat muda */
+  font-weight: 700;
+  color: #475569;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.8px; /* Jarak antar huruf agar terlihat premium */
+}
+
+/* Menghilangkan garis bawah pada baris paling akhir */
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Efek Interaktif (Hover) pada Baris Data */
+tbody tr {
+  transition: background-color 0.2s ease; /* Transisi warna yang mulus */
+}
+
+tbody tr:hover {
+  background-color: #f1f5f9; /* Baris menjadi abu-abu muda saat disorot mouse */
+}
+
+/* Membuat teks di kolom pertama (biasanya Nama/ID) menjadi lebih tebal */
+tbody td:first-child {
+  font-weight: 600;
+  color: var(--primary);
+}
+
+/* Memastikan badge di dalam tabel terlihat proporsional */
+table .badge {
+  font-size: 11px;
+  padding: 4px 10px;
+  letter-spacing: 0.3px;
+}
+
