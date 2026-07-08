@@ -10,8 +10,26 @@ async function loadMaster(){state.master=await api("/api/master")}
 function renderMenu(){menu.innerHTML=(menus[state.user.role]||["dashboard"]).map(m=>`<button class="${state.page===m?"active":""}" onclick="render('${m}')">${labels[m]}</button>`).join("")}
 async function showApp(){loginPage.classList.add("hidden");mainApp.classList.remove("hidden");userText.textContent=`${state.user.name} (${state.user.role})`;roleText.textContent="Role: "+state.user.role;await loadMaster();render("dashboard")}
 function showLogin(){loginPage.classList.remove("hidden");mainApp.classList.add("hidden")}
-async function render(p){state.page=p;renderMenu(); if(p==="dashboard")return dashboard(); if(p==="students")return students(); if(p==="journals")return journals(); if(p==="bk")return bk(); if(p==="users")return users(); if(p==="logs")return logs(); if(p==="architecture")return architecture()}
-async function dashboard(){setTitle("Dashboard","Ringkasan sistem sekolah terintegrasi.");const d=await api("/api/dashboard");content.innerHTML=`<div class="grid cols4"><div class="card stat"><h3>Total Siswa</h3><strong>${d.totalStudents}</strong></div><div class="card stat"><h3>Total Guru</h3><strong>${d.totalTeachers}</strong></div><div class="card stat"><h3>Jurnal</h3><strong>${d.totalJournals}</strong></div><div class="card stat"><h3>Kasus BK</h3><strong>${d.totalBkCases}</strong></div></div><div class="grid cols2"><div class="card"><h3>Modul Sistem</h3><ul><li>Jurnal Mengajar</li><li>Bimbingan Konseling</li><li>Data Kesiswaan</li><li>Manajemen Pengguna</li><li>Monitoring dan Logging</li></ul></div><div class="card"><h3>Aktivitas Terbaru</h3>${table(["Waktu","User","Aksi"],d.logs.map(l=>row([new Date(l.timestamp).toLocaleString("id-ID"),l.user_name,l.action])))}</div></div>`}
+async function render(p) {
+  state.page = p;
+  renderMenu();
+  
+  // Baris baru: Memberi tahu CSS modul apa yang sedang aktif
+  document.body.setAttribute("data-modul", p); 
+
+  if(p === "dashboard") return dashboard(); 
+  if(p === "students") return students(); 
+  if(p === "journals") return journals(); 
+  if(p === "bk") return bk(); 
+  if(p === "users") return users(); 
+  if(p === "logs") return logs(); 
+  if(p === "architecture") return architecture();
+}
+async function dashboard() {
+  setTitle("Dashboard", "Ringkasan sistem sekolah terintegrasi.");
+  const d = await api("/api/dashboard");
+  content.innerHTML = `<div class="grid cols4"><div class="card stat"><h3>Total Siswa</h3><strong>${d.totalStudents}</strong></div><div class="card stat"><h3>Total Guru</h3><strong>${d.totalTeachers}</strong></div><div class="card stat"><h3>Jurnal</h3><strong>${d.totalJournals}</strong></div><div class="card stat"><h3>Kasus BK</h3><strong>${d.totalBkCases}</strong></div></div><div class="grid cols2"><div class="card"><h3>Modul Sistem</h3><ul><li>Jurnal Mengajar</li><li>Bimbingan Konseling</li><li>Data Kesiswaan</li><li>Manajemen Pengguna</li><li>Monitoring dan Logging</li></ul></div><div class="card"><h3>Aktivitas Terbaru</h3>${table(["Waktu", "User", "Aksi"], d.logs.map(l => row([new Date(l.timestamp).toLocaleString("id-ID"), l.user_name, `<span class="badge green">${l.action}</span>`])))}</div></div>`;
+}
 async function students(){setTitle("Data Kesiswaan","Data utama siswa digunakan bersama oleh modul BK, jurnal, dan akademik.");const data=await api("/api/students");const can=state.user.role==="admin";content.innerHTML=`${can?studentForm():`<div class="notice">Role ${state.user.role} hanya dapat melihat data sesuai hak akses.</div>`}<div class="card"><h3>Daftar Siswa</h3>${table(["NIS","Nama","Kelas","Status","Orang Tua","Aksi"],data.map(s=>row([s.nis,s.name,s.class_name,`<span class="badge">${s.status}</span>`,s.parent_name,can?`<button class="danger" onclick="delStudent(${s.id})">Hapus</button>`:"-"])))}</div>`;if(can)bindStudent()}
 function studentForm(){return `<div class="card"><h3>Tambah Siswa</h3><form id="studentForm" class="formgrid"><div><label>NIS</label><input name="nis" required></div><div><label>Nama</label><input name="name" required></div><div><label>Kelas</label><select name="class_id">${state.master.classes.map(c=>`<option value="${c.id}">${c.name}</option>`)}</select></div><div><label>Status</label><select name="status"><option>Aktif</option><option>Pindah</option><option>Lulus</option><option>Keluar</option></select></div><div class="full"><label>Orang Tua</label><input name="parent_name"></div><div class="full"><button>Simpan Siswa</button></div></form></div>`}
 function bindStudent(){studentForm.addEventListener("submit",async e=>{e.preventDefault();await api("/api/students",{method:"POST",body:JSON.stringify(Object.fromEntries(new FormData(e.target)))});await loadMaster();students()})}

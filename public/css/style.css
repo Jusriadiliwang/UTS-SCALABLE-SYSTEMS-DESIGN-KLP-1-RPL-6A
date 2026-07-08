@@ -1,16 +1,561 @@
-:root{--bg:#f4f7fb;--card:#fff;--primary:#1d4ed8;--text:#0f172a;--muted:#64748b;--border:#e2e8f0;--danger:#dc2626}
-*{box-sizing:border-box} body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:var(--text)} .hidden{display:none!important}
-.login-page{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;background:linear-gradient(135deg,#dbeafe,#f8fafc)}
-.login-card{max-width:760px;width:100%;background:#fff;border-radius:18px;box-shadow:0 20px 60px #0002;padding:28px}.brand,.side-brand,header{display:flex;gap:14px;align-items:center}.brand{align-items:flex-start}
-.logo{width:58px;height:58px;border-radius:16px;background:var(--primary);color:white;display:grid;place-items:center;font-weight:800}.logo.small{width:42px;height:42px;border-radius:12px;font-size:13px}
-h1,h2,h3,p{margin-top:0} p{color:var(--muted);line-height:1.5}.info{background:#eff6ff;border:1px solid #bfdbfe;color:#1e3a8a;border-radius:12px;padding:14px;margin:18px 0}
-label{font-weight:700;font-size:14px} input,select,textarea{width:100%;border:1px solid var(--border);border-radius:10px;padding:11px;font-size:14px;margin:6px 0 12px} textarea{min-height:85px}
-button{border:0;border-radius:10px;padding:11px 14px;background:var(--primary);color:white;font-weight:700;cursor:pointer}.gray,.demo button{background:#e2e8f0;color:#0f172a}.danger{background:var(--danger)}
-.demo{display:flex;gap:8px;flex-wrap:wrap}.layout{display:grid;grid-template-columns:280px 1fr;min-height:100vh} aside{background:#0f172a;color:white;padding:22px} aside p,aside span{color:#cbd5e1}
-nav{display:grid;gap:8px;margin:22px 0}nav button{background:transparent;color:#cbd5e1;text-align:left;border:1px solid transparent}nav button.active,nav button:hover{background:#ffffff17;color:white;border-color:#ffffff26}
-.side-card{background:#ffffff14;border:1px solid #ffffff22;border-radius:14px;padding:14px} main{padding:28px} header{justify-content:space-between;margin-bottom:22px}.card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:18px;margin-bottom:18px;box-shadow:0 10px 24px #0000000a}
-.grid{display:grid;gap:18px}.cols4{grid-template-columns:repeat(4,1fr)}.cols2{grid-template-columns:repeat(2,1fr)}.stat strong{font-size:34px;color:var(--primary)}.stat h3{color:var(--muted);font-size:14px}
-table{width:100%;border-collapse:collapse;background:white}th,td{border-bottom:1px solid var(--border);padding:11px;text-align:left;font-size:14px}th{background:#f8fafc}.wrap{overflow-x:auto}.badge{background:#e0f2fe;color:#075985;border-radius:99px;padding:5px 8px;font-weight:700;font-size:12px}
-.formgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.full{grid-column:1/-1}.architecture{background:#020617;color:#e2e8f0;border-radius:14px;padding:18px;white-space:pre-wrap;font-family:Consolas,monospace;line-height:1.6}
-.notice{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;border-radius:12px;padding:12px;margin-bottom:16px}
-@media(max-width:900px){.layout{grid-template-columns:1fr} aside{position:static}.cols4,.cols2,.formgrid{grid-template-columns:1fr} header{display:block}}
+/* =========================================
+   IMPORT FONT & VARIABEL
+   ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --bg: #f4f7fb;
+  --card: #ffffff;
+  --primary: #2563eb;       /* Biru yang lebih cerah dan modern */
+  --primary-hover: #1d4ed8;
+  --text: #0f172a;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --danger: #ef4444;
+  --sidebar-bg: #0f172a;    /* Midnight blue untuk sidebar */
+  --sidebar-hover: rgba(255, 255, 255, 0.1);
+  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.08);
+  --radius-lg: 16px;
+  --radius-md: 10px;
+}
+
+/* =========================================
+   RESET & DASAR UTAMA
+   ========================================= */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif; /* Font lebih elegan */
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Animasi Halus */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================
+   HALAMAN LOGIN
+   ========================================= */
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  
+  /* Layer 1: Warna gelap transparan (Overlay)
+     Layer 2: Foto background sekolah */
+  background: 
+    linear-gradient(rgba(0, 20, 76, 0.65), rgba(80, 130, 255, 0)),
+    url('https://upload.wikimedia.org/wikipedia/commons/3/3e/Upacara_bendera_di_sekolah.jpg') no-repeat center center;
+  
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.login-card {
+  max-width: 760px;
+  width: 100%;
+  background: var(--card);
+  border-radius: 20px;
+  box-shadow: var(--shadow-lg);
+  padding: 40px;
+  animation: fadeUp 0.6s ease-out; /* Efek muncul */
+}
+
+.brand, .side-brand, header {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.brand {
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.logo {
+  width: 58px;
+  height: 58px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, var(--primary), #60a5fa); /* Logo dengan gradien */
+  color: white;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.logo.small {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  font-size: 14px;
+}
+
+h1, h2, h3, p {
+  margin-top: 0;
+}
+
+p {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.info {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1e3a8a;
+  border-radius: var(--radius-md);
+  padding: 16px;
+  margin: 24px 0;
+  font-size: 14px;
+}
+
+/* =========================================
+   FORM & TOMBOL
+   ========================================= */
+label {
+  font-weight: 600;
+  font-size: 14px;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+
+input, select, textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  font-size: 14px;
+  margin-bottom: 16px;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+button {
+  border: 0;
+  border-radius: var(--radius-md);
+  padding: 12px 20px;
+  background: var(--primary);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+button:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+}
+
+.gray, .demo button {
+  background: #f1f5f9;
+  color: var(--text);
+}
+
+.gray:hover, .demo button:hover {
+  background: #e2e8f0;
+  color: var(--primary);
+}
+
+.danger {
+  background: var(--danger);
+}
+.danger:hover {
+  background: #b91c1c;
+}
+
+.demo {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+/* =========================================
+   LAYOUT DASHBOARD UTAMA
+   ========================================= */
+.layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  min-height: 100vh;
+}
+
+aside {
+  background: var(--sidebar-bg);
+  color: white;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+aside p, aside span {
+  color: #94a3b8;
+}
+
+nav {
+  display: grid;
+  gap: 6px;
+  margin: 30px 0;
+  flex-grow: 1;
+}
+
+nav button {
+  background: transparent;
+  color: #cbd5e1;
+  text-align: left;
+  border: 1px solid transparent;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+}
+
+nav button.active, nav button:hover {
+  background: var(--sidebar-hover);
+  color: white;
+  border-color: rgba(255, 255, 255, 0.1);
+  transform: none; /* Reset transform dari tombol umum */
+}
+
+.side-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+}
+
+/* Area Konten Utama */
+main {
+  padding: 32px 40px;
+  overflow-y: auto;
+}
+
+header {
+  justify-content: space-between;
+  margin-bottom: 30px;
+  animation: fadeUp 0.4s ease-out;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  animation: fadeUp 0.5s ease-out;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+/* =========================================
+   GRID & UTILITAS KONTEN
+   ========================================= */
+.grid {
+  display: grid;
+  gap: 24px;
+}
+
+.cols4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.cols2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.stat strong {
+  font-size: 36px;
+  color: var(--primary);
+  line-height: 1.2;
+}
+
+.stat h3 {
+  color: var(--muted);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+/* Tabel */
+.wrap {
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+th, td {
+  border-bottom: 1px solid var(--border);
+  padding: 14px 16px;
+  text-align: left;
+  font-size: 14px;
+}
+
+th {
+  background: #f8fafc;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+.badge {
+  background: #e0f2fe;
+  color: #0369a1;
+  border-radius: 99px;
+  padding: 6px 12px;
+  font-weight: 600;
+  font-size: 12px;
+  display: inline-block;
+}
+
+/* Formulir Grid */
+.formgrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.full {
+  grid-column: 1 / -1;
+}
+
+.architecture {
+  background: #020617;
+  color: #e2e8f0;
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  white-space: pre-wrap;
+  font-family: 'Consolas', 'Courier New', monospace;
+  line-height: 1.6;
+  font-size: 14px;
+  overflow-x: auto;
+}
+
+.notice {
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  color: #9a3412;
+  border-radius: var(--radius-md);
+  padding: 16px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* =========================================
+   CUSTOM SCROLLBAR
+   ========================================= */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* =========================================
+   RESPONSIVITAS
+   ========================================= */
+@media (max-width: 1024px) {
+  .cols4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+  
+  aside {
+    position: static;
+    padding: 20px;
+  }
+
+  main {
+    padding: 20px;
+  }
+  
+  .cols4, .cols2, .formgrid {
+    grid-template-columns: 1fr;
+  }
+  
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+}
+
+/* =========================================
+   PERCANTIK DAFTAR (LIST) DI DALAM KARTU
+   ========================================= */
+.card ul {
+  list-style: none; /* Hilangkan titik bullet bawaan */
+  padding: 0;
+  margin: 16px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Jarak antar item */
+}
+
+.card li {
+  background: var(--bg); /* Warna latar abu-abu sangat muda */
+  border: 1px solid var(--border);
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: default; /* Kursor biasa (bukan pointer) karena ini bukan tombol */
+}
+
+/* Garis aksen warna biru di sebelah kiri setiap item */
+.card li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--primary);
+  border-radius: 4px 0 0 4px;
+}
+
+/* Efek saat kursor diarahkan ke item (Hover) */
+.card li:hover {
+  background: var(--card); /* Berubah jadi putih bersih */
+  box-shadow: var(--shadow-sm);
+  transform: translateX(6px); /* Bergeser sedikit ke kanan dengan mulus */
+  border-color: #bfdbfe; /* Border jadi biru muda */
+  color: var(--primary); /* Teks berubah jadi biru */
+}
+
+/* =========================================
+   TOMBOL STATUS / AKSI (HIJAU)
+   ========================================= */
+.badge.green {
+  background: #10b981; /* Warna hijau emerald modern */
+  color: white;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  display: inline-block;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(16, 185, 129, 0.25);
+  letter-spacing: 0.5px;
+}
+
+/* =========================================
+   BACKGROUND DINAMIS PER MODUL
+   ========================================= */
+/* Default (Jika foto belum diload/tidak ada) */
+body {
+  transition: background 0.5s ease-in-out; /* Animasi transisi background yang mulus */
+}
+
+/* Background untuk Dashboard */
+body[data-modul="dashboard"] {
+  background: linear-gradient(rgba(0, 28, 65, 0.782), rgba(244, 247, 251, 0.95)), 
+              url('https://image.idn.media/post/20240701/anak-sekolah-f35589ba73dd597007d857ff263aeca0-91098f3ced3a86c4dca051756a50d187-62108df0edebf9e2fb81c88f731197ec.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* Background untuk Data Kesiswaan */
+body[data-modul="students"] {
+  background: linear-gradient(rgba(0, 28, 65, 0.782), rgba(244, 247, 251, 0.95)), 
+              url('https://awsimages.detik.net.id/community/media/visual/2025/02/04/ilustrasi-siswa-sma_169.jpeg?w=1200') no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* Background untuk Jurnal Mengajar */
+body[data-modul="journals"] {
+  background: linear-gradient(rgba(0, 28, 65, 0.782), rgba(244, 247, 251, 0.95)), 
+              url('https://smabudiutomoperak.sch.id/wp-content/uploads/2025/11/IMG_5556-1-scaled.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* Background untuk BK */
+body[data-modul="bk"] {
+  background: linear-gradient(rgba(0, 28, 65, 0.782), rgba(244, 247, 251, 0.95)), 
+              url('https://joglojateng.com/wp-content/uploads/2025/12/ilustrasi-siswa-SMA-sedang-belajar.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* Background untuk Manajemen Pengguna */
+body[data-modul="users"] {
+  background-image: linear-gradient(rgba(0, 28, 65, 0.782), rgba(244, 247, 251, 0.95)), url('https://universitasmulia.ac.id/wp-content/uploads/2024/11/para-siswa-belajar-arduino.jpg');
+}
+
+/* Background untuk Monitoring & Logging */
+body[data-modul="logs"] {
+  background-image: linear-gradient(rgba(0, 28, 65, 0.782), rgba(244, 247, 251, 0.95)), url('https://www.smadwiwarna.sch.id/wp-content/uploads/2025/05/manfaat-belajar-tik.jpg');
+}
+
+/* Background untuk Scalable Design (Arsitektur) */
+body[data-modul="architecture"] {
+  background-image: linear-gradient(rgba(0, 28, 65, 0.782), rgba(244, 247, 251, 0.95)), url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSsfDr8msDUXy-2yNqe3e0Z2P_iKEjRLfGlLfmDW069ZgXQD0nGIoVpzo&s=10');
+}
+
