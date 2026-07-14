@@ -864,6 +864,15 @@
       "action": "LOGIN",
       "detail": "Pengguna masuk ke sistem",
       "timestamp": "2026-07-14T12:51:45.908Z"
+    },
+    {
+      "id": 74,
+      "user_id": 1,
+      "user_name": "Administrator",
+      "role": "admin",
+      "action": "LOGIN",
+      "detail": "Pengguna masuk ke sistem",
+      "timestamp": "2026-07-14T13:08:51.411Z"
     }
   ]
 }
