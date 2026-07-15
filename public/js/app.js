@@ -13,16 +13,16 @@ function showLogin(){loginPage.classList.remove("hidden");mainApp.classList.add(
 async function render(p) {
   state.page = p;
   renderMenu();
-  
-  // Baris baru: Memberi tahu CSS modul apa yang sedang aktif
-  document.body.setAttribute("data-modul", p); 
 
-  if(p === "dashboard") return dashboard(); 
-  if(p === "students") return students(); 
-  if(p === "journals") return journals(); 
-  if(p === "bk") return bk(); 
-  if(p === "users") return users(); 
-  if(p === "logs") return logs(); 
+  // Baris baru: Memberi tahu CSS modul apa yang sedang aktif
+  document.body.setAttribute("data-modul", p);
+
+  if(p === "dashboard") return dashboard();
+  if(p === "students") return students();
+  if(p === "journals") return journals();
+  if(p === "bk") return bk();
+  if(p === "users") return users();
+  if(p === "logs") return logs();
   if(p === "architecture") return architecture();
 }
 async function dashboard() {
@@ -32,15 +32,34 @@ async function dashboard() {
 }
 async function students(){setTitle("Data Kesiswaan","Data utama siswa digunakan bersama oleh modul BK, jurnal, dan akademik.");const data=await api("/api/students");const can=state.user.role==="admin";content.innerHTML=`${can?studentForm():`<div class="notice">Role ${state.user.role} hanya dapat melihat data sesuai hak akses.</div>`}<div class="card"><h3>Daftar Siswa</h3>${table(["NIS","Nama","Kelas","Status","Orang Tua","Aksi"],data.map(s=>row([s.nis,s.name,s.class_name,`<span class="badge">${s.status}</span>`,s.parent_name,can?`<button class="danger" onclick="delStudent(${s.id})">Hapus</button>`:"-"])))}</div>`;if(can)bindStudent()}
 function studentForm(){return `<div class="card"><h3>Tambah Siswa</h3><form id="studentForm" class="formgrid"><div><label>NIS</label><input name="nis" required></div><div><label>Nama</label><input name="name" required></div><div><label>Kelas</label><select name="class_id">${state.master.classes.map(c=>`<option value="${c.id}">${c.name}</option>`)}</select></div><div><label>Status</label><select name="status"><option>Aktif</option><option>Pindah</option><option>Lulus</option><option>Keluar</option></select></div><div class="full"><label>Orang Tua</label><input name="parent_name"></div><div class="full"><button>Simpan Siswa</button></div></form></div>`}
-function bindStudent(){studentForm.addEventListener("submit",async e=>{e.preventDefault();await api("/api/students",{method:"POST",body:JSON.stringify(Object.fromEntries(new FormData(e.target)))});await loadMaster();students()})}
+function bindStudent(){
+  document.getElementById("studentForm").addEventListener("submit", async e=>{
+    e.preventDefault();
+    await api("/api/students",{method:"POST",body:JSON.stringify(Object.fromEntries(new FormData(e.target)))});
+    await loadMaster();
+    students()
+  })
+}
 async function delStudent(id){if(confirm("Hapus siswa?")){await api("/api/students/"+id,{method:"DELETE"});await loadMaster();students()}}
 async function journals(){setTitle("Jurnal Mengajar","Guru mengisi aktivitas pembelajaran.");const data=await api("/api/journals");const can=["guru","admin"].includes(state.user.role);content.innerHTML=`${can?journalForm():`<div class="notice">Role ${state.user.role} hanya dapat melihat rekap jurnal.</div>`}<div class="card"><h3>Riwayat Jurnal</h3>${table(["Tanggal","Guru","Kelas","Mapel","Materi","Metode","Catatan"],data.map(j=>row([j.date,j.teacher_name,j.class_name,j.subject_name,j.material,j.method,j.notes])))}</div>`;if(can)bindJournal()}
 function journalForm(){return `<div class="card"><h3>Input Jurnal</h3><form id="journalForm" class="formgrid"><div><label>Kelas</label><select name="class_id">${state.master.classes.map(c=>`<option value="${c.id}">${c.name}</option>`)}</select></div><div><label>Mapel</label><select name="subject_id">${state.master.subjects.map(s=>`<option value="${s.id}">${s.name}</option>`)}</select></div><div><label>Tanggal</label><input type="date" name="date" required></div><div><label>Metode</label><input name="method" required></div><div class="full"><label>Materi</label><textarea name="material" required></textarea></div><div class="full"><label>Catatan</label><textarea name="notes"></textarea></div><div class="full"><button>Simpan Jurnal</button></div></form></div>`}
-function bindJournal(){journalForm.addEventListener("submit",async e=>{e.preventDefault();await api("/api/journals",{method:"POST",body:JSON.stringify(Object.fromEntries(new FormData(e.target)))});journals()})}
+function bindJournal(){
+  document.getElementById("journalForm").addEventListener("submit", async e=>{
+    e.preventDefault();
+    await api("/api/journals",{method:"POST",body:JSON.stringify(Object.fromEntries(new FormData(e.target)))});
+    journals()
+  })
+}
 async function bk(){setTitle("Bimbingan Konseling","Data BK dibatasi berdasarkan role pengguna.");const data=await api("/api/bk");const can=["bk","admin"].includes(state.user.role);content.innerHTML=`${can?bkForm():`<div class="notice">Data BK bersifat sensitif dan akses dibatasi.</div>`}<div class="card"><h3>Riwayat BK</h3>${table(["Tanggal","Siswa","Guru BK","Jenis","Deskripsi","Tindak Lanjut","Status"],data.map(b=>row([b.date,b.student_name,b.teacher_name,b.case_type,b.description,b.follow_up,`<span class="badge">${b.status}</span>`])))}</div>`;if(can)bindBK()}
 function bkForm(){return `<div class="card"><h3>Input Catatan BK</h3><form id="bkForm" class="formgrid"><div><label>Siswa</label><select name="student_id">${state.master.students.map(s=>`<option value="${s.id}">${s.name} - ${s.class_name}</option>`)}</select></div><div><label>Tanggal</label><input type="date" name="date" required></div><div><label>Jenis</label><select name="case_type"><option>Konseling</option><option>Pelanggaran</option><option>Prestasi</option><option>Tindak Lanjut</option></select></div><div><label>Status</label><select name="status"><option>Dipantau</option><option>Selesai</option><option>Butuh Tindak Lanjut</option></select></div><div class="full"><label>Deskripsi</label><textarea name="description" required></textarea></div><div class="full"><label>Tindak Lanjut</label><textarea name="follow_up" required></textarea></div><div class="full"><button>Simpan BK</button></div></form></div>`}
-function bindBK(){bkForm.addEventListener("submit",async e=>{e.preventDefault();await api("/api/bk",{method:"POST",body:JSON.stringify(Object.fromEntries(new FormData(e.target)))});bk()})}
-async function users(){setTitle("Manajemen Pengguna","Admin mengelola akun dan role.");const data=await api("/api/users");content.innerHTML=`<div class="card"><h3>Tambah Akun</h3><form id="userForm" class="formgrid"><div><label>Nama</label><input name="name" required></div><div><label>Email</label><input type="email" name="email" required></div><div><label>Password</label><input name="password" value="password123"></div><div><label>Role</label><select name="role">${state.master.roles.map(r=>`<option value="${r.name}">${r.label}</option>`)}</select></div><div><label>Student ID</label><input type="number" name="student_id"></div><div><label>Teacher ID</label><input type="number" name="teacher_id"></div><div class="full"><button>Simpan Akun</button></div></form></div><div class="card"><h3>Daftar User</h3>${table(["Nama","Email","Role"],data.map(u=>row([u.name,u.email,`<span class="badge">${u.role}</span>`])))}</div>`;userForm.addEventListener("submit",async e=>{e.preventDefault();await api("/api/users",{method:"POST",body:JSON.stringify(Object.fromEntries(new FormData(e.target)))});users()})}
+function bindBK(){
+  document.getElementById("bkForm").addEventListener("submit", async e=>{
+    e.preventDefault();
+    await api("/api/bk",{method:"POST",body:JSON.stringify(Object.fromEntries(new FormData(e.target)))});
+    bk()
+  })
+}
+async function users(){setTitle("Manajemen Pengguna","Admin mengelola akun dan role.");const data=await api("/api/users");content.innerHTML=`<div class="card"><h3>Tambah Akun</h3><form id="userForm" class="formgrid"><div><label>Nama</label><input name="name" required></div><div><label>Email</label><input type="email" name="email" required></div><div><label>Password</label><input name="password" value="password123"></div><div><label>Role</label><select name="role">${state.master.roles.map(r=>`<option value="${r.name}">${r.label}</option>`)}</select></div><div><label>Student ID</label><input type="number" name="student_id"></div><div><label>Teacher ID</label><input type="number" name="teacher_id"></div><div class="full"><button>Simpan Akun</button></div></form></div><div class="card"><h3>Daftar User</h3>${table(["Nama","Email","Role"],data.map(u=>row([u.name,u.email,`<span class="badge">${u.role}</span>`])))}</div>`;document.getElementById("userForm").addEventListener("submit",async e=>{e.preventDefault();await api("/api/users",{method:"POST",body:JSON.stringify(Object.fromEntries(new FormData(e.target)))});users()})}
 async function logs(){setTitle("Monitoring & Logging","Mencatat aktivitas pengguna dan perubahan data.");const data=await api("/api/logs");content.innerHTML=`<div class="card"><h3>Activity Log</h3>${table(["Waktu","Nama","Role","Aksi","Detail"],data.map(l=>row([new Date(l.timestamp).toLocaleString("id-ID"),l.user_name,l.role,l.action,l.detail])))}</div>`}
 function architecture(){setTitle("Scalable System Design","Rancangan arsitektur, vCPU, scaling, keamanan, dan optimasi.");content.innerHTML=`<div class="card"><h3>Arsitektur</h3><div class="architecture">User / Browser
   ↓

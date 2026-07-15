@@ -726,3 +726,6 @@ table .badge {
   letter-spacing: 0.3px;
 }
 
+.side-card {
+  display: none !important;
+}
