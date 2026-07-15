@@ -111,12 +111,21 @@
     },
     {
       "id": 9,
+<<<<<<< HEAD
       "name": "hamsa",
       "email": "hamsa@gmail.com",
       "password": "password123",
       "role": "admin",
       "student_id": null,
       "teacher_id": null
+=======
+      "name": "tri wahyuni",
+      "email": "triwahyuni@gmail.com",
+      "password": "123456",
+      "role": "siswa",
+      "student_id": 105841,
+      "teacher_id": 1
+>>>>>>> 7a82253ea4ac6b82c7f7e252caecbdb83a26ab75
     }
   ],
   "teachers": [
@@ -873,7 +882,11 @@
       "role": "admin",
       "action": "LOGIN",
       "detail": "Pengguna masuk ke sistem",
+<<<<<<< HEAD
       "timestamp": "2026-07-08T17:58:43.665Z"
+=======
+      "timestamp": "2026-07-14T12:32:01.777Z"
+>>>>>>> 7a82253ea4ac6b82c7f7e252caecbdb83a26ab75
     },
     {
       "id": 70,
@@ -882,6 +895,7 @@
       "role": "admin",
       "action": "LOGIN",
       "detail": "Pengguna masuk ke sistem",
+<<<<<<< HEAD
       "timestamp": "2026-07-08T17:59:19.788Z"
     },
     {
@@ -901,6 +915,27 @@
       "action": "LOGIN",
       "detail": "Pengguna masuk ke sistem",
       "timestamp": "2026-07-08T18:01:26.720Z"
+=======
+      "timestamp": "2026-07-14T12:45:45.796Z"
+    },
+    {
+      "id": 71,
+      "user_id": 1,
+      "user_name": "Administrator",
+      "role": "admin",
+      "action": "CREATE_USER",
+      "detail": "Menambah akun triwahyuni@gmail.com",
+      "timestamp": "2026-07-14T12:47:20.530Z"
+    },
+    {
+      "id": 72,
+      "user_id": 9,
+      "user_name": "tri wahyuni",
+      "role": "siswa",
+      "action": "LOGIN",
+      "detail": "Pengguna masuk ke sistem",
+      "timestamp": "2026-07-14T12:47:50.473Z"
+>>>>>>> 7a82253ea4ac6b82c7f7e252caecbdb83a26ab75
     },
     {
       "id": 73,
@@ -909,6 +944,7 @@
       "role": "admin",
       "action": "LOGIN",
       "detail": "Pengguna masuk ke sistem",
+<<<<<<< HEAD
       "timestamp": "2026-07-08T18:01:55.822Z"
     },
     {
@@ -922,11 +958,18 @@
     },
     {
       "id": 75,
+=======
+      "timestamp": "2026-07-14T12:51:45.908Z"
+    },
+    {
+      "id": 74,
+>>>>>>> 7a82253ea4ac6b82c7f7e252caecbdb83a26ab75
       "user_id": 1,
       "user_name": "Administrator",
       "role": "admin",
       "action": "LOGIN",
       "detail": "Pengguna masuk ke sistem",
+<<<<<<< HEAD
       "timestamp": "2026-07-09T04:33:50.247Z"
     },
     {
@@ -1234,6 +1277,9 @@
       "action": "LOGIN",
       "detail": "Pengguna masuk ke sistem",
       "timestamp": "2026-07-15T05:56:25.103Z"
+=======
+      "timestamp": "2026-07-14T13:08:51.411Z"
+>>>>>>> 7a82253ea4ac6b82c7f7e252caecbdb83a26ab75
     }
   ]
 }

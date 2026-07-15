@@ -26,7 +26,7 @@ async function render(p) {
   if(p === "architecture") return architecture();
 }
 async function dashboard() {
-  setTitle("Dashboard", "Ringkasan sistem sekolah terintegrasi.");
+  setTitle("Dashboard", "SELAMAT DATANG DI SISTEM SEKOLAH .");
   const d = await api("/api/dashboard");
   content.innerHTML = `<div class="grid cols4"><div class="card stat"><h3>Total Siswa</h3><strong>${d.totalStudents}</strong></div><div class="card stat"><h3>Total Guru</h3><strong>${d.totalTeachers}</strong></div><div class="card stat"><h3>Jurnal</h3><strong>${d.totalJournals}</strong></div><div class="card stat"><h3>Kasus BK</h3><strong>${d.totalBkCases}</strong></div></div><div class="grid cols2"><div class="card"><h3>Modul Sistem</h3><ul><li>Jurnal Mengajar</li><li>Bimbingan Konseling</li><li>Data Kesiswaan</li><li>Manajemen Pengguna</li><li>Monitoring dan Logging</li></ul></div><div class="card"><h3>Aktivitas Terbaru</h3>${table(["Waktu", "User", "Aksi"], d.logs.map(l => row([new Date(l.timestamp).toLocaleString("id-ID"), l.user_name, `<span class="badge green">${l.action}</span>`])))}</div></div>`;
 }
