@@ -111,21 +111,21 @@
     },
     {
       "id": 9,
-<<<<<<< HEAD
-      "name": "hamsa",
-      "email": "hamsa@gmail.com",
-      "password": "password123",
-      "role": "admin",
-      "student_id": null,
-      "teacher_id": null
-=======
       "name": "tri wahyuni",
       "email": "triwahyuni@gmail.com",
       "password": "123456",
       "role": "siswa",
       "student_id": 105841,
       "teacher_id": 1
->>>>>>> 7a82253ea4ac6b82c7f7e252caecbdb83a26ab75
+    },
+    {
+      "id": 10,
+      "name": "hamsa",
+      "email": "hamsa@gmail.com",
+      "password": "password123",
+      "role": "admin",
+      "student_id": null,
+      "teacher_id": null
     }
   ],
   "teachers": [
@@ -177,11 +177,11 @@
   "students": [
     {
       "id": 2,
-      "nis": "S002",
-      "name": "Siti Aminah",
+      "nis": "S007",
+      "name": "wajo",
       "class_id": 1,
       "status": "Aktif",
-      "parent_name": "Ibu Siti"
+      "parent_name": "Ibu luna"
     },
     {
       "id": 3,
@@ -206,6 +206,14 @@
       "class_id": 2,
       "status": "Aktif",
       "parent_name": "DG SORE"
+    },
+    {
+      "id": 6,
+      "nis": "S006",
+      "name": "SALWA",
+      "class_id": 1,
+      "status": "Aktif",
+      "parent_name": "JONI"
     }
   ],
   "teaching_journals": [
@@ -260,6 +268,16 @@
       "description": "bolos",
       "follow_up": "kecelakaan",
       "status": "Butuh Tindak Lanjut"
+    },
+    {
+      "id": 3,
+      "student_id": 2,
+      "teacher_id": null,
+      "date": "2026-02-11",
+      "case_type": "Konseling",
+      "description": "llll",
+      "follow_up": "sssss",
+      "status": "Dipantau"
     }
   ],
   "activity_logs": [
@@ -882,11 +900,7 @@
       "role": "admin",
       "action": "LOGIN",
       "detail": "Pengguna masuk ke sistem",
-<<<<<<< HEAD
       "timestamp": "2026-07-08T17:58:43.665Z"
-=======
-      "timestamp": "2026-07-14T12:32:01.777Z"
->>>>>>> 7a82253ea4ac6b82c7f7e252caecbdb83a26ab75
     },
     {
       "id": 70,
@@ -895,7 +909,6 @@
       "role": "admin",
       "action": "LOGIN",
       "detail": "Pengguna masuk ke sistem",
-<<<<<<< HEAD
       "timestamp": "2026-07-08T17:59:19.788Z"
     },
     {
@@ -915,27 +928,6 @@
       "action": "LOGIN",
       "detail": "Pengguna masuk ke sistem",
       "timestamp": "2026-07-08T18:01:26.720Z"
-=======
-      "timestamp": "2026-07-14T12:45:45.796Z"
-    },
-    {
-      "id": 71,
-      "user_id": 1,
-      "user_name": "Administrator",
-      "role": "admin",
-      "action": "CREATE_USER",
-      "detail": "Menambah akun triwahyuni@gmail.com",
-      "timestamp": "2026-07-14T12:47:20.530Z"
-    },
-    {
-      "id": 72,
-      "user_id": 9,
-      "user_name": "tri wahyuni",
-      "role": "siswa",
-      "action": "LOGIN",
-      "detail": "Pengguna masuk ke sistem",
-      "timestamp": "2026-07-14T12:47:50.473Z"
->>>>>>> 7a82253ea4ac6b82c7f7e252caecbdb83a26ab75
     },
     {
       "id": 73,
@@ -944,7 +936,6 @@
       "role": "admin",
       "action": "LOGIN",
       "detail": "Pengguna masuk ke sistem",
-<<<<<<< HEAD
       "timestamp": "2026-07-08T18:01:55.822Z"
     },
     {
@@ -958,18 +949,11 @@
     },
     {
       "id": 75,
-=======
-      "timestamp": "2026-07-14T12:51:45.908Z"
-    },
-    {
-      "id": 74,
->>>>>>> 7a82253ea4ac6b82c7f7e252caecbdb83a26ab75
       "user_id": 1,
       "user_name": "Administrator",
       "role": "admin",
       "action": "LOGIN",
       "detail": "Pengguna masuk ke sistem",
-<<<<<<< HEAD
       "timestamp": "2026-07-09T04:33:50.247Z"
     },
     {
@@ -1060,7 +1044,7 @@
       "role": "admin",
       "action": "LOGIN",
       "detail": "Pengguna masuk ke sistem",
-      "timestamp": "2026-07-15T04:24:56.769Z"
+      "timestamp": "2026-07-14T12:32:01.777Z"
     },
     {
       "id": 86,
@@ -1069,25 +1053,25 @@
       "role": "admin",
       "action": "LOGIN",
       "detail": "Pengguna masuk ke sistem",
-      "timestamp": "2026-07-15T04:59:35.221Z"
+      "timestamp": "2026-07-14T12:45:45.796Z"
     },
     {
       "id": 87,
       "user_id": 1,
       "user_name": "Administrator",
       "role": "admin",
-      "action": "CREATE_STUDENT",
-      "detail": "Menambah siswa ROY JORDIN",
-      "timestamp": "2026-07-15T05:22:06.673Z"
+      "action": "CREATE_USER",
+      "detail": "Menambah akun triwahyuni@gmail.com",
+      "timestamp": "2026-07-14T12:47:20.530Z"
     },
     {
       "id": 88,
-      "user_id": 1,
-      "user_name": "Administrator",
-      "role": "admin",
+      "user_id": 9,
+      "user_name": "tri wahyuni",
+      "role": "siswa",
       "action": "LOGIN",
       "detail": "Pengguna masuk ke sistem",
-      "timestamp": "2026-07-15T05:22:38.839Z"
+      "timestamp": "2026-07-14T12:47:50.473Z"
     },
     {
       "id": 89,
@@ -1096,10 +1080,64 @@
       "role": "admin",
       "action": "LOGIN",
       "detail": "Pengguna masuk ke sistem",
-      "timestamp": "2026-07-15T05:25:00.642Z"
+      "timestamp": "2026-07-14T12:51:45.908Z"
     },
     {
       "id": 90,
+      "user_id": 1,
+      "user_name": "Administrator",
+      "role": "admin",
+      "action": "LOGIN",
+      "detail": "Pengguna masuk ke sistem",
+      "timestamp": "2026-07-14T13:08:51.411Z"
+    },
+    {
+      "id": 91,
+      "user_id": 1,
+      "user_name": "Administrator",
+      "role": "admin",
+      "action": "LOGIN",
+      "detail": "Pengguna masuk ke sistem",
+      "timestamp": "2026-07-15T04:24:56.769Z"
+    },
+    {
+      "id": 92,
+      "user_id": 1,
+      "user_name": "Administrator",
+      "role": "admin",
+      "action": "LOGIN",
+      "detail": "Pengguna masuk ke sistem",
+      "timestamp": "2026-07-15T04:59:35.221Z"
+    },
+    {
+      "id": 93,
+      "user_id": 1,
+      "user_name": "Administrator",
+      "role": "admin",
+      "action": "CREATE_STUDENT",
+      "detail": "Menambah siswa ROY JORDIN",
+      "timestamp": "2026-07-15T05:22:06.673Z"
+    },
+    {
+      "id": 94,
+      "user_id": 1,
+      "user_name": "Administrator",
+      "role": "admin",
+      "action": "LOGIN",
+      "detail": "Pengguna masuk ke sistem",
+      "timestamp": "2026-07-15T05:22:38.839Z"
+    },
+    {
+      "id": 95,
+      "user_id": 1,
+      "user_name": "Administrator",
+      "role": "admin",
+      "action": "LOGIN",
+      "detail": "Pengguna masuk ke sistem",
+      "timestamp": "2026-07-15T05:25:00.642Z"
+    },
+    {
+      "id": 96,
       "user_id": 3,
       "user_name": "Pak Ahmad",
       "role": "guru",
@@ -1108,7 +1146,7 @@
       "timestamp": "2026-07-15T05:27:39.869Z"
     },
     {
-      "id": 91,
+      "id": 97,
       "user_id": 6,
       "user_name": "Andi Siswa",
       "role": "siswa",
@@ -1117,7 +1155,7 @@
       "timestamp": "2026-07-15T05:28:06.039Z"
     },
     {
-      "id": 92,
+      "id": 98,
       "user_id": 7,
       "user_name": "Orang Tua Andi",
       "role": "orangtua",
@@ -1126,7 +1164,7 @@
       "timestamp": "2026-07-15T05:28:48.240Z"
     },
     {
-      "id": 93,
+      "id": 99,
       "user_id": 1,
       "user_name": "Administrator",
       "role": "admin",
@@ -1135,7 +1173,7 @@
       "timestamp": "2026-07-15T05:32:30.107Z"
     },
     {
-      "id": 94,
+      "id": 100,
       "user_id": 1,
       "user_name": "Administrator",
       "role": "admin",
@@ -1144,7 +1182,7 @@
       "timestamp": "2026-07-15T05:35:10.961Z"
     },
     {
-      "id": 95,
+      "id": 101,
       "user_id": 3,
       "user_name": "Pak Ahmad",
       "role": "guru",
@@ -1153,7 +1191,7 @@
       "timestamp": "2026-07-15T05:35:32.501Z"
     },
     {
-      "id": 96,
+      "id": 102,
       "user_id": 1,
       "user_name": "Administrator",
       "role": "admin",
@@ -1162,7 +1200,7 @@
       "timestamp": "2026-07-15T05:36:07.419Z"
     },
     {
-      "id": 97,
+      "id": 103,
       "user_id": 1,
       "user_name": "Administrator",
       "role": "admin",
@@ -1171,7 +1209,7 @@
       "timestamp": "2026-07-15T05:37:08.415Z"
     },
     {
-      "id": 98,
+      "id": 104,
       "user_id": 1,
       "user_name": "Administrator",
       "role": "admin",
@@ -1180,7 +1218,7 @@
       "timestamp": "2026-07-15T05:38:18.416Z"
     },
     {
-      "id": 99,
+      "id": 105,
       "user_id": 3,
       "user_name": "Pak Ahmad",
       "role": "guru",
@@ -1189,7 +1227,7 @@
       "timestamp": "2026-07-15T05:38:40.695Z"
     },
     {
-      "id": 100,
+      "id": 106,
       "user_id": 3,
       "user_name": "Pak Ahmad",
       "role": "guru",
@@ -1198,7 +1236,7 @@
       "timestamp": "2026-07-15T05:39:00.238Z"
     },
     {
-      "id": 101,
+      "id": 107,
       "user_id": 3,
       "user_name": "Pak Ahmad",
       "role": "guru",
@@ -1207,7 +1245,7 @@
       "timestamp": "2026-07-15T05:40:41.196Z"
     },
     {
-      "id": 102,
+      "id": 108,
       "user_id": 6,
       "user_name": "Andi Siswa",
       "role": "siswa",
@@ -1216,7 +1254,7 @@
       "timestamp": "2026-07-15T05:40:51.033Z"
     },
     {
-      "id": 103,
+      "id": 109,
       "user_id": 1,
       "user_name": "Administrator",
       "role": "admin",
@@ -1225,7 +1263,7 @@
       "timestamp": "2026-07-15T05:41:00.549Z"
     },
     {
-      "id": 104,
+      "id": 110,
       "user_id": 2,
       "user_name": "Kepala Sekolah",
       "role": "kepala",
@@ -1234,7 +1272,7 @@
       "timestamp": "2026-07-15T05:41:15.138Z"
     },
     {
-      "id": 105,
+      "id": 111,
       "user_id": 2,
       "user_name": "Kepala Sekolah",
       "role": "kepala",
@@ -1243,7 +1281,7 @@
       "timestamp": "2026-07-15T05:44:07.682Z"
     },
     {
-      "id": 106,
+      "id": 112,
       "user_id": 1,
       "user_name": "Administrator",
       "role": "admin",
@@ -1252,7 +1290,7 @@
       "timestamp": "2026-07-15T05:44:20.646Z"
     },
     {
-      "id": 107,
+      "id": 113,
       "user_id": 1,
       "user_name": "Administrator",
       "role": "admin",
@@ -1261,7 +1299,7 @@
       "timestamp": "2026-07-15T05:48:18.933Z"
     },
     {
-      "id": 108,
+      "id": 114,
       "user_id": 1,
       "user_name": "Administrator",
       "role": "admin",
@@ -1270,16 +1308,143 @@
       "timestamp": "2026-07-15T05:51:03.865Z"
     },
     {
-      "id": 109,
+      "id": 115,
       "user_id": 1,
       "user_name": "Administrator",
       "role": "admin",
       "action": "LOGIN",
       "detail": "Pengguna masuk ke sistem",
       "timestamp": "2026-07-15T05:56:25.103Z"
-=======
-      "timestamp": "2026-07-14T13:08:51.411Z"
->>>>>>> 7a82253ea4ac6b82c7f7e252caecbdb83a26ab75
+    },
+    {
+      "id": 116,
+      "user_id": 1,
+      "user_name": "Administrator",
+      "role": "admin",
+      "action": "LOGIN",
+      "detail": "Pengguna masuk ke sistem",
+      "timestamp": "2026-07-15T07:11:23.850Z"
+    },
+    {
+      "id": 117,
+      "user_id": 1,
+      "user_name": "Administrator",
+      "role": "admin",
+      "action": "CREATE_STUDENT",
+      "detail": "Menambah siswa SALWA",
+      "timestamp": "2026-07-15T07:11:59.181Z"
+    },
+    {
+      "id": 118,
+      "user_id": 1,
+      "user_name": "Administrator",
+      "role": "admin",
+      "action": "CREATE_BK_CASE",
+      "detail": "Mencatat kasus BK",
+      "timestamp": "2026-07-15T07:13:37.976Z"
+    },
+    {
+      "id": 119,
+      "user_id": 3,
+      "user_name": "Pak Ahmad",
+      "role": "guru",
+      "action": "LOGIN",
+      "detail": "Pengguna masuk ke sistem",
+      "timestamp": "2026-07-15T07:32:09.400Z"
+    },
+    {
+      "id": 120,
+      "user_id": 4,
+      "user_name": "Bu Rina BK",
+      "role": "bk",
+      "action": "LOGIN",
+      "detail": "Pengguna masuk ke sistem",
+      "timestamp": "2026-07-15T07:33:03.519Z"
+    },
+    {
+      "id": 121,
+      "user_id": 3,
+      "user_name": "Pak Ahmad",
+      "role": "guru",
+      "action": "LOGIN",
+      "detail": "Pengguna masuk ke sistem",
+      "timestamp": "2026-07-15T07:34:03.281Z"
+    },
+    {
+      "id": 122,
+      "user_id": 1,
+      "user_name": "Administrator",
+      "role": "admin",
+      "action": "LOGIN",
+      "detail": "Pengguna masuk ke sistem",
+      "timestamp": "2026-07-15T07:35:48.766Z"
+    },
+    {
+      "id": 123,
+      "user_id": 6,
+      "user_name": "Andi Siswa",
+      "role": "siswa",
+      "action": "LOGIN",
+      "detail": "Pengguna masuk ke sistem",
+      "timestamp": "2026-07-15T07:36:32.896Z"
+    },
+    {
+      "id": 124,
+      "user_id": 6,
+      "user_name": "Andi Siswa",
+      "role": "siswa",
+      "action": "LOGIN",
+      "detail": "Pengguna masuk ke sistem",
+      "timestamp": "2026-07-15T07:36:57.107Z"
+    },
+    {
+      "id": 125,
+      "user_id": 1,
+      "user_name": "Administrator",
+      "role": "admin",
+      "action": "LOGIN",
+      "detail": "Pengguna masuk ke sistem",
+      "timestamp": "2026-07-16T03:37:21.251Z"
+    },
+    {
+      "id": 126,
+      "user_id": 1,
+      "user_name": "Administrator",
+      "role": "admin",
+      "action": "LOGIN",
+      "detail": "Pengguna masuk ke sistem",
+      "student_id": null,
+      "timestamp": "2026-07-16T05:29:36.360Z"
+    },
+    {
+      "id": 127,
+      "user_id": 1,
+      "user_name": "Administrator",
+      "role": "admin",
+      "action": "UPDATE_STUDENT",
+      "detail": "Mengubah data siswa wajo",
+      "student_id": 2,
+      "timestamp": "2026-07-16T05:30:26.633Z"
+    },
+    {
+      "id": 128,
+      "user_id": 3,
+      "user_name": "Pak Ahmad",
+      "role": "guru",
+      "action": "LOGIN",
+      "detail": "Pengguna masuk ke sistem",
+      "student_id": null,
+      "timestamp": "2026-07-16T06:00:29.648Z"
+    },
+    {
+      "id": 129,
+      "user_id": 1,
+      "user_name": "Administrator",
+      "role": "admin",
+      "action": "LOGIN",
+      "detail": "Pengguna masuk ke sistem",
+      "student_id": null,
+      "timestamp": "2026-07-16T06:06:28.273Z"
     }
   ]
 }
