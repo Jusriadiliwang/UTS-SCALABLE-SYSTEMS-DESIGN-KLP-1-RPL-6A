@@ -1445,6 +1445,26 @@
       "detail": "Pengguna masuk ke sistem",
       "student_id": null,
       "timestamp": "2026-07-16T06:06:28.273Z"
+    },
+    {
+      "id": 130,
+      "user_id": 1,
+      "user_name": "Administrator",
+      "role": "admin",
+      "action": "LOGIN",
+      "detail": "Pengguna masuk ke sistem",
+      "student_id": null,
+      "timestamp": "2026-07-17T05:41:44.979Z"
+    },
+    {
+      "id": 131,
+      "user_id": 1,
+      "user_name": "Administrator",
+      "role": "admin",
+      "action": "LOGIN",
+      "detail": "Pengguna masuk ke sistem",
+      "student_id": null,
+      "timestamp": "2026-07-18T04:19:29.512Z"
     }
   ]
 }

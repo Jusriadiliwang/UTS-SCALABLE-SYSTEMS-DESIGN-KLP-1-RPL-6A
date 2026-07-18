@@ -29,7 +29,7 @@
 
 body {
   margin: 0;
-  font-family: 'Plus Jakarta Sans', sans-serif; /* Font lebih elegan */
+  font-family: 'Plus Jakarta Sans', sans-serif;
   background: var(--bg);
   color: var(--text);
   -webkit-font-smoothing: antialiased;
@@ -39,7 +39,6 @@ body {
   display: none !important;
 }
 
-/* Animasi Halus */
 @keyframes fadeUp {
   from {
     opacity: 0;
@@ -60,13 +59,11 @@ body {
   align-items: center;
   justify-content: center;
   padding: 24px;
-  
-  /* Layer 1: Warna gelap transparan (Overlay)
-     Layer 2: Foto background sekolah */
-  background: 
+
+  background:
     linear-gradient(rgba(0, 20, 76, 0.65), rgba(80, 130, 255, 0)),
     url('https://upload.wikimedia.org/wikipedia/commons/3/3e/Upacara_bendera_di_sekolah.jpg') no-repeat center center;
-  
+
   background-size: cover;
   background-attachment: fixed;
 }
@@ -78,7 +75,7 @@ body {
   border-radius: 20px;
   box-shadow: var(--shadow-lg);
   padding: 40px;
-  animation: fadeUp 0.6s ease-out; /* Efek muncul */
+  animation: fadeUp 0.6s ease-out;
 }
 
 .brand, .side-brand, header {
@@ -96,7 +93,7 @@ body {
   width: 58px;
   height: 58px;
   border-radius: var(--radius-lg);
-  background: linear-gradient(135deg, var(--primary), #60a5fa); /* Logo dengan gradien */
+  background: linear-gradient(135deg, var(--primary), #60a5fa);
   color: white;
   display: grid;
   place-items: center;
@@ -211,7 +208,8 @@ button:hover {
 .layout {
   display: grid;
   grid-template-columns: 260px 1fr;
-  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
 }
 
 aside {
@@ -220,6 +218,8 @@ aside {
   padding: 24px;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
+  position: relative; /* jadi acuan posisi dropdown nav mobile */
 }
 
 aside p, aside span {
@@ -246,7 +246,7 @@ nav button.active, nav button:hover {
   background: var(--sidebar-hover);
   color: white;
   border-color: rgba(255, 255, 255, 0.1);
-  transform: none; /* Reset transform dari tombol umum */
+  transform: none;
 }
 
 .side-card {
@@ -260,6 +260,7 @@ nav button.active, nav button:hover {
 main {
   padding: 32px 40px;
   overflow-y: auto;
+  height: 100vh;
 }
 
 header {
@@ -411,6 +412,44 @@ tr:last-child td {
 }
 
 /* =========================================
+   HAMBURGER MENU (TOMBOL 3 GARIS)
+   ========================================= */
+#menuToggle {
+  display: none; /* baru muncul di media query mobile */
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 26px;
+  height: 20px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+#menuToggle span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: white;
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+}
+
+/* Animasi jadi tanda "X" saat menu terbuka */
+#menuToggle.active span:nth-child(1) {
+  transform: translateY(8.5px) rotate(45deg);
+}
+#menuToggle.active span:nth-child(2) {
+  opacity: 0;
+}
+#menuToggle.active span:nth-child(3) {
+  transform: translateY(-8.5px) rotate(-45deg);
+}
+
+/* =========================================
    RESPONSIVITAS TOTAL (MOBILE & TABLET)
    ========================================= */
 @media (max-width: 1024px) {
@@ -419,19 +458,31 @@ tr:last-child td {
   }
 }
 
-@media (max-width: 768px) {
+/* =========================================
+   TABLET (769px - 1024px)
+   Nav tetap horizontal di atas (tanpa hamburger),
+   kartu statistik ditumpuk 1 kolom penuh
+   ========================================= */
+@media (min-width: 769px) and (max-width: 1024px) {
   .layout {
     display: flex;
     flex-direction: column;
+    height: auto;
     min-height: 100vh;
+    overflow: visible;
   }
-  
+
   aside {
-    padding: 16px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 20px 32px;
     position: sticky;
     top: 0;
     z-index: 50;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow-y: visible;
+    gap: 16px;
   }
 
   .side-brand {
@@ -439,37 +490,117 @@ tr:last-child td {
     width: 100%;
   }
 
+  /* Tablet cukup lebar untuk nav penuh, hamburger tidak perlu */
+  #menuToggle {
+    display: none;
+  }
+
   nav {
     display: flex;
     flex-direction: row;
+    flex-wrap: nowrap;
+    position: static;
+    background: transparent;
+    box-shadow: none;
     overflow-x: auto;
     gap: 12px;
-    margin: 16px 0 0 0;
-    padding-bottom: 4px;
-    -webkit-overflow-scrolling: touch; 
-    scrollbar-width: none; 
+    margin: 0;
+    padding: 0;
+    max-height: none;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
   }
-  
+
   nav::-webkit-scrollbar {
-    display: none; 
+    display: none;
   }
 
   nav button {
-    white-space: nowrap; 
-    flex-shrink: 0; 
-    text-align: center;
-    padding: 8px 16px;
-    font-size: 13px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    padding: 10px 18px;
+  }
+
+  main {
+    height: auto;
+    overflow-y: visible;
+    padding: 24px 32px;
+  }
+
+  .cols4 {
+    grid-template-columns: 1fr; /* kartu statistik full-width, ditumpuk vertikal */
+  }
+}
+
+@media (max-width: 768px) {
+  .layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    height: auto;
+    overflow: visible;
+  }
+
+  aside {
+    padding: 16px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    overflow-y: visible;
+  }
+
+  .side-brand {
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  /* Tampilkan tombol hamburger hanya di mobile */
+  #menuToggle {
+    display: flex;
+  }
+
+  /* Nav disembunyikan, muncul sebagai dropdown saat aside.menu-open */
+  nav {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    margin: 16px 0 0 0;
+    padding: 8px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--sidebar-bg);
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
+    z-index: 60;
+  }
+
+  aside.menu-open nav {
+    display: flex;
+  }
+
+  nav button {
+    white-space: normal;
+    text-align: left;
+    padding: 12px 16px;
+    font-size: 14px;
   }
 
   .side-card {
-    display: none; 
+    display: none;
   }
 
   main {
     padding: 16px;
+    height: auto;
+    overflow-y: visible;
   }
-  
+
   main header {
     flex-direction: column;
     align-items: flex-start;
@@ -500,16 +631,16 @@ tr:last-child td {
    PERCANTIK DAFTAR (LIST) DI DALAM KARTU
    ========================================= */
 .card ul {
-  list-style: none; /* Hilangkan titik bullet bawaan */
+  list-style: none;
   padding: 0;
   margin: 16px 0 0 0;
   display: flex;
   flex-direction: column;
-  gap: 12px; /* Jarak antar item */
+  gap: 12px;
 }
 
 .card li {
-  background: var(--bg); /* Warna latar abu-abu sangat muda */
+  background: var(--bg);
   border: 1px solid var(--border);
   padding: 12px 16px;
   border-radius: var(--radius-md);
@@ -520,10 +651,9 @@ tr:last-child td {
   transition: all 0.2s ease;
   position: relative;
   overflow: hidden;
-  cursor: default; /* Kursor biasa (bukan pointer) karena ini bukan tombol */
+  cursor: default;
 }
 
-/* Garis aksen warna biru di sebelah kiri setiap item */
 .card li::before {
   content: '';
   position: absolute;
@@ -535,20 +665,19 @@ tr:last-child td {
   border-radius: 4px 0 0 4px;
 }
 
-/* Efek saat kursor diarahkan ke item (Hover) */
 .card li:hover {
-  background: var(--card); /* Berubah jadi putih bersih */
+  background: var(--card);
   box-shadow: var(--shadow-sm);
-  transform: translateX(6px); /* Bergeser sedikit ke kanan dengan mulus */
-  border-color: #bfdbfe; /* Border jadi biru muda */
-  color: var(--primary); /* Teks berubah jadi biru */
+  transform: translateX(6px);
+  border-color: #bfdbfe;
+  color: var(--primary);
 }
 
 /* =========================================
    TOMBOL STATUS / AKSI (HIJAU)
    ========================================= */
 .badge.green {
-  background: #10b981; /* Warna hijau emerald modern */
+  background: #10b981;
   color: white;
   padding: 6px 14px;
   border-radius: 6px;
@@ -563,50 +692,42 @@ tr:last-child td {
 /* =========================================
    BACKGROUND DINAMIS PER MODUL
    ========================================= */
-/* Default (Jika foto belum diload/tidak ada) */
 body {
-  transition: background 0.5s ease-in-out; /* Animasi transisi background yang mulus */
+  transition: background 0.5s ease-in-out;
 }
 
-/* Background untuk Dashboard */
 body[data-modul="dashboard"] {
-  background: linear-gradient(rgba(0, 28, 65, 0.782), rgba(244, 247, 251, 0.95)), 
+  background: linear-gradient(rgba(0, 28, 65, 0.782), rgba(244, 247, 251, 0.95)),
               url('https://image.idn.media/post/20240701/anak-sekolah-f35589ba73dd597007d857ff263aeca0-91098f3ced3a86c4dca051756a50d187-62108df0edebf9e2fb81c88f731197ec.jpg') no-repeat center center fixed;
   background-size: cover;
 }
 
-/* Background untuk Data Kesiswaan */
 body[data-modul="students"] {
-  background: linear-gradient(rgba(0, 28, 65, 0.782), rgba(244, 247, 251, 0.95)), 
+  background: linear-gradient(rgba(0, 28, 65, 0.782), rgba(244, 247, 251, 0.95)),
               url('https://awsimages.detik.net.id/community/media/visual/2025/02/04/ilustrasi-siswa-sma_169.jpeg?w=1200') no-repeat center center fixed;
   background-size: cover;
 }
 
-/* Background untuk Jurnal Mengajar */
 body[data-modul="journals"] {
-  background: linear-gradient(rgba(0, 28, 65, 0.782), rgba(244, 247, 251, 0.95)), 
+  background: linear-gradient(rgba(0, 28, 65, 0.782), rgba(244, 247, 251, 0.95)),
               url('https://smabudiutomoperak.sch.id/wp-content/uploads/2025/11/IMG_5556-1-scaled.jpg') no-repeat center center fixed;
   background-size: cover;
 }
 
-/* Background untuk BK */
 body[data-modul="bk"] {
-  background: linear-gradient(rgba(0, 28, 65, 0.782), rgba(244, 247, 251, 0.95)), 
+  background: linear-gradient(rgba(0, 28, 65, 0.782), rgba(244, 247, 251, 0.95)),
               url('https://joglojateng.com/wp-content/uploads/2025/12/ilustrasi-siswa-SMA-sedang-belajar.jpg') no-repeat center center fixed;
   background-size: cover;
 }
 
-/* Background untuk Manajemen Pengguna */
 body[data-modul="users"] {
   background-image: linear-gradient(rgba(0, 28, 65, 0.782), rgba(244, 247, 251, 0.95)), url('https://universitasmulia.ac.id/wp-content/uploads/2024/11/para-siswa-belajar-arduino.jpg');
 }
 
-/* Background untuk Monitoring & Logging */
 body[data-modul="logs"] {
   background-image: linear-gradient(rgba(0, 28, 65, 0.782), rgba(244, 247, 251, 0.95)), url('https://www.smadwiwarna.sch.id/wp-content/uploads/2025/05/manfaat-belajar-tik.jpg');
 }
 
-/* Background untuk Scalable Design (Arsitektur) */
 body[data-modul="architecture"] {
   background-image: linear-gradient(rgba(0, 28, 65, 0.782), rgba(244, 247, 251, 0.95)), url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSsfDr8msDUXy-2yNqe3e0Z2P_iKEjRLfGlLfmDW069ZgXQD0nGIoVpzo&s=10');
 }
@@ -615,12 +736,11 @@ main header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
-  /* Memberikan background putih transparan agar teks terbaca */
-  background: rgba(255, 255, 255, 0.85); 
-  backdrop-filter: blur(10px); /* Efek kaca (Glassmorphism) */
+
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  
+
   padding: 20px 28px;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
@@ -628,7 +748,6 @@ main header {
   margin-bottom: 30px;
 }
 
-/* Memastikan kelompok teks judul rapi */
 main header > div:first-child h1 {
   margin: 0;
   color: var(--text);
@@ -641,21 +760,18 @@ main header > div:first-child p {
   font-size: 14px;
 }
 
-/* Memastikan nama user dan tombol logout sejajar secara horizontal */
 main header > div:last-child {
   display: flex;
   align-items: center;
   gap: 16px;
 }
 
-/* Styling tambahan untuk teks nama user */
 #userText {
   font-weight: 600;
   color: var(--text);
   font-size: 14px;
 }
 
-/* Responsivitas untuk layar kecil (HP) */
 @media (max-width: 768px) {
   main header {
     flex-direction: column;
@@ -671,18 +787,18 @@ main header > div:last-child {
   overflow-x: auto;
   border-radius: var(--radius-md);
   border: 1px solid var(--border);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02); /* Bayangan super halus */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
   background: var(--card);
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  white-space: nowrap; /* Mencegah teks turun ke bawah dan merusak layout */
+  white-space: nowrap;
 }
 
 th, td {
-  padding: 16px 20px; /* Ruang bernapas yang lebih luas */
+  padding: 16px 20px;
   text-align: left;
   font-size: 14px;
   vertical-align: middle;
@@ -691,35 +807,31 @@ th, td {
 }
 
 th {
-  background: #f8fafc; /* Latar belakang abu-abu sangat muda */
+  background: #f8fafc;
   font-weight: 700;
   color: #475569;
   text-transform: uppercase;
   font-size: 12px;
-  letter-spacing: 0.8px; /* Jarak antar huruf agar terlihat premium */
+  letter-spacing: 0.8px;
 }
 
-/* Menghilangkan garis bawah pada baris paling akhir */
 tbody tr:last-child td {
   border-bottom: none;
 }
 
-/* Efek Interaktif (Hover) pada Baris Data */
 tbody tr {
-  transition: background-color 0.2s ease; /* Transisi warna yang mulus */
+  transition: background-color 0.2s ease;
 }
 
 tbody tr:hover {
-  background-color: #f1f5f9; /* Baris menjadi abu-abu muda saat disorot mouse */
+  background-color: #f1f5f9;
 }
 
-/* Membuat teks di kolom pertama (biasanya Nama/ID) menjadi lebih tebal */
 tbody td:first-child {
   font-weight: 600;
   color: var(--primary);
 }
 
-/* Memastikan badge di dalam tabel terlihat proporsional */
 table .badge {
   font-size: 11px;
   padding: 4px 10px;
